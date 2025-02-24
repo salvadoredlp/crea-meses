@@ -1,0 +1,33 @@
+#!/bin/bash
+if [ -n "$1" ]
+then	
+	for i in $*
+	do
+		echo
+	        echo "Creando Directorios de todos los Meses para "$i;echo
+		for ((meses=1;meses<=12;meses++))
+		do
+			mes=$(date -d "$meses/01/1990" +%b | tr '[:lower:]' '[:upper:]')
+			echo -n "Creando " ${mes} " "
+			#Crear directorios
+			# mkdir $i/$mes
+			for ((n=1;n<8;n++))
+			do
+				sleep 0.05
+				echo -n "."
+			done
+			echo
+		done
+		echo
+	done
+	exit 0
+else
+	if [ -f "/usr/bin/cowsay" ]
+	then
+		cowsay -r 'Falta el nombre del directorio'
+	else
+		echo  'Falta el nombre del directiorio'
+	fi
+	exit 1
+fi	
+
